@@ -1,1 +1,4 @@
-# linear_equations_noSolution
+# 线性代数中（非）齐次线性方程组解的情况的流程图
+
++ .tex 文件使用xeLaTeX运行, pdf为我运行的效果.
++ .md 文件我使用的是typro创建及导出的pdf.
