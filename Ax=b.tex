@@ -1,0 +1,34 @@
+\documentclass[crop=true,border=20pt]{standalone}
+\usepackage{xeCJK}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric,shapes.multipart, arrows}
+\tikzstyle{startstop} = [rectangle, rounded corners, minimum width=2cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+\tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=2cm, minimum height=1cm,,trapezium stretches=true, trapezium stretches body, text centered,text width=2cm, draw=black, fill=blue!30]
+\tikzstyle{process} = [rectangle, minimum width=2cm, minimum height=1cm, text centered,text width=3cm, draw=black, fill=orange!30]
+\tikzstyle{decision} = [diamond, aspect=2, minimum width=2cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+
+\begin{document}
+%判断非齐次线性方程组解的情况
+\begin{tikzpicture}[node distance=2cm, auto]
+\node (start) [startstop] {开始};
+\node (in) [io, below of=start] {$m$个方程,\\ $n$个未知数};
+\node (pro-ref) [process, below of=in,yshift=-0.5cm] {行阶梯形矩阵$E$,\\主元个数为$r$};
+\node (dec-zero-one) [decision, below of=pro-ref,yshift=-0.5cm] {$E$中是否出现$0=1$};
+\node (out-no-solution) [io, below of=dec-zero-one,yshift=-1cm] {无解};
+\node (dec-rn)[decision,right of=dec-zero-one,xshift=2cm]{$r=n$};
+\node (out-unique-solution)[io, below of=dec-rn,yshift=-1cm]{唯一解};
+\node (out-infinity-solution)[io, right of=out-unique-solution,xshift=2cm]{无穷解};
+\node (stop) [startstop, below of=out-no-solution] {结束};
+\draw [arrow] (start) -- (in);
+\draw [arrow] (in) -- node[pos=0.5,anchor=west]{高斯消元法} (pro-ref);
+\draw [arrow] (pro-ref) -- (dec-zero-one);
+\draw [arrow] (dec-zero-one) --node[pos=0.5,anchor=south] {否}(dec-rn);
+\draw [arrow] (dec-zero-one) --node[pos=0.5,anchor=east] {是}(out-no-solution);
+\draw [arrow] (dec-rn) -- node[pos=0.5,anchor=east] {是} (out-unique-solution);
+\draw [arrow] (dec-rn) -| node[pos=0.75,anchor=east] {否}(out-infinity-solution);
+\draw [arrow] (out-no-solution) --(stop);
+\draw [arrow] (out-unique-solution) |-(stop);
+\draw [arrow] (out-infinity-solution) |-(stop);
+\end{tikzpicture}
+\end{document}
