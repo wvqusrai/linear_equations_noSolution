@@ -16,7 +16,7 @@
 \node (pro-ref) [process, below of=in,yshift=-0.5cm] {行阶梯形矩阵$E$,\\主元个数为$r$};
 \node (dec-rn) [decision, below of=pro-ref,yshift=-0.5cm] {$r=n$};
 \node (out-unique-solution)[io, below of=dec-rn,yshift=-1cm]{只有零解};
-\node (out-infinity-solution)[io, right of=out-unique-solution,xshift=2cm]{无穷解};
+\node (out-infinity-solution)[io, right of=out-unique-solution,xshift=2cm]{有非零解};
 \node (stop) [startstop, below of=out-unique-solution] {结束};
 
 \draw [arrow] (start) -- (in);
